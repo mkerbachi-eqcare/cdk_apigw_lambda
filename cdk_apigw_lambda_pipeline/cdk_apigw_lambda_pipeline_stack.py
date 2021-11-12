@@ -42,10 +42,10 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             )
         )
 
-        code_bucket = s3.Bucket(
+        codebuild_bucket = s3.Bucket(
             self,
-            id="cdk-code-bucket",
-            bucket_name="cdk-code-bucket",
+            id="cdk-codebuild-bucket",
+            bucket_name="cdk-codebuild-bucket",
             block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
             encryption=s3.BucketEncryption.S3_MANAGED,
             versioned=True,  #Required by Codebuild to run
@@ -56,7 +56,7 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
 
         cdk_code_s3sourceaction = codepipeline_actions.S3SourceAction(
             action_name="cdk_code_bucket_action",
-            bucket=code_bucket,
+            bucket=codebuild_bucket,
             bucket_key="cdk_code.zip",
             output=source_output,
             trigger=codepipeline_actions.S3Trigger.EVENTS,
@@ -66,20 +66,6 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
 
 
         # Stage: Code build
-
-        # build_stage = codebuild.Project(
-        #     self,
-        #     "Build code",
-        #     project_name="BuildCode",
-        #     description="Code build",
-        #     source=source_output,
-        #     build_spec=codebuild.BuildSpec.from_source_filename(filename="aws_cdk_fullstackapp_pipeline/pipeline/build-buildspec.yml"),
-        #     environment=codebuild.BuildEnvironment(
-        #         build_image=codebuild.LinuxBuildImage.STANDARD_5_0,
-        #         privileged=False
-        #     )
-        # )
-
 
         build_stage = codebuild.PipelineProject(
             self,
@@ -106,9 +92,20 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
         # CodePipeline
         ############################
 
+        codepipeline_bucket = s3.Bucket(
+            self,
+            id="cdk-codepipeline-bucket",
+            bucket_name="cdk-codepipeline-bucket",
+            block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
+            encryption=s3.BucketEncryption.S3_MANAGED,
+            versioned=True,  #Required by Codebuild to run
+            removal_policy=core.RemovalPolicy.DESTROY
+        )
+
         pipeline = codepipeline.Pipeline(
             self,
             "ApiGwLambda_Pipeline",
+            artifact_bucket=codebuild_bucket,
             pipeline_name="ApiGwLambda_Pipeline",
             stages=[codepipeline.StageProps(
                 stage_name="CheckoutCode",
@@ -119,3 +116,6 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
                 actions=[cdk_code_codebuildaction]
             )]
         )
+
+        print(pipeline.is_construct)
+        print(pipeline.is_resource)
