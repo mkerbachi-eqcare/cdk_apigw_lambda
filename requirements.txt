@@ -1,1 +1,6 @@
 -e .
+aws_cdk.core
+aws_cdk.aws_apigateway
+aws_cdk.aws_lambda
+aws_cdk.aws_codepipeline
+aws_cdk.aws_codepipeline_actions

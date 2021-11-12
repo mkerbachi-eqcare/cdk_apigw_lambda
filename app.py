@@ -31,4 +31,10 @@ CdkApigwLambdaStack(app, "CdkApigwLambdaStack",
     # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
     )
 
+#Pipeline
+from cdk_apigw_lambda_pipeline.cdk_apigw_lambda_pipeline_stack import CdkApigwLambdaPipelineeStack
+
+CdkApigwLambdaPipelineeStack(app, "CdkApigwLambdaPipelineeStack")
+
+
 app.synth()
