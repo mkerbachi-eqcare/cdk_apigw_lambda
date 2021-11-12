@@ -4,5 +4,5 @@ phases:
   build:
     commands:
       - pwd
-      - ls
+      - ls; ls cdk_apigw_lambda
       - env
