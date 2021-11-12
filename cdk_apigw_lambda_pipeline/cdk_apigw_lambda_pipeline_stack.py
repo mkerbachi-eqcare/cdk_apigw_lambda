@@ -28,7 +28,7 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             description="Checkout code from Github",
             source=codebuild.Source.git_hub(
                 owner="mkerbachi-eqcare",
-                repo="aws_cdk_fullstackapp",
+                repo=" cdk_apigw_lambda",
                 report_build_status=False,
                 webhook=False,
                 # webhook_filters=[codebuild.FilterGroup.in_event_of(
@@ -107,8 +107,8 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
 
         pipeline = codepipeline.Pipeline(
             self,
-            "CodePipeline",
-            pipeline_name="FullStackApp_Pipeline",
+            "ApiGwLambda_Pipeline",
+            pipeline_name="ApiGwLambda_Pipeline",
             stages=[codepipeline.StageProps(
                 stage_name="CodeCDK",
                 actions=[cdk_code_s3sourceaction]
