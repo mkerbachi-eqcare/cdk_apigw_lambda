@@ -36,7 +36,7 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
                     codebuild.EventAction.PUSH).and_branch_is(branch_name="*")
                 ]
             ),
-            build_spec=codebuild.BuildSpec.from_source_filename(filename="aws_cdk_fullstackapp_pipeline/pipeline/buildspec.yml"),
+            build_spec=codebuild.BuildSpec.from_source_filename(filename="cdk_apigw_lambda_pipeline//pipeline/buildspec.yml"),
             environment=codebuild.BuildEnvironment(
                 build_image=codebuild.LinuxBuildImage.STANDARD_5_0,
                 privileged=False
@@ -88,7 +88,7 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             project_name="BuildCode",
             description="Code build",
             # source=source_output,
-            build_spec=codebuild.BuildSpec.from_source_filename(filename="aws_cdk_fullstackapp_pipeline/pipeline/build-buildspec.yml"),
+            build_spec=codebuild.BuildSpec.from_source_filename(filename="cdk_apigw_lambda_pipeline//pipeline/build-buildspec.yml"),
             environment=codebuild.BuildEnvironment(
                 build_image=codebuild.LinuxBuildImage.STANDARD_5_0,
                 privileged=False
