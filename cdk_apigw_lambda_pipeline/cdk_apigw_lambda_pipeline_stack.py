@@ -111,11 +111,11 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             "ApiGwLambda_Pipeline",
             pipeline_name="ApiGwLambda_Pipeline",
             stages=[codepipeline.StageProps(
-                stage_name="CodeCDK",
+                stage_name="CheckoutCode",
                 actions=[cdk_code_s3sourceaction]
             ),
             codepipeline.StageProps(
-                stage_name="Codebuild",
+                stage_name="BuildCode",
                 actions=[cdk_code_codebuildaction]
             )]
         )
