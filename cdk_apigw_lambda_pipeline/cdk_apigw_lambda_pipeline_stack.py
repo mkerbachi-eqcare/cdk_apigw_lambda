@@ -30,10 +30,10 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
                 owner="mkerbachi-eqcare",
                 repo="cdk_apigw_lambda",
                 report_build_status=False,
-                webhook=False,
-                # webhook_filters=[codebuild.FilterGroup.in_event_of(
-                #     codebuild.EventAction.PUSH).and_branch_is(branch_name="*")
-                # ]
+                webhook=True,
+                webhook_filters=[codebuild.FilterGroup.in_event_of(
+                    codebuild.EventAction.PUSH).and_branch_is(branch_name="*")
+                ]
             ),
             build_spec=codebuild.BuildSpec.from_source_filename(filename="aws_cdk_fullstackapp_pipeline/pipeline/buildspec.yml"),
             environment=codebuild.BuildEnvironment(
