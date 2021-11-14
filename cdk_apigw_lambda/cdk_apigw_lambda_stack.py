@@ -29,8 +29,8 @@ class CdkApigwLambdaStack(cdk.Stack):
         
         #Verison lambda with $CODEBUILD_BUILD_NUMBER
         # print("os.env={}".format(os.environ))
-        print("os.env={}" + os.environ)
-        
+        print(os.environ)
+
         function1 = aws_lambda.Function(
             self,
             "function1",
