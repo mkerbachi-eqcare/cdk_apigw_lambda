@@ -94,6 +94,19 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             )
         )
 
+        # build_stage = codebuild.Project(
+        #     self,
+        #     "Build code",
+        #     project_name="BuildCode_Project",
+        #     description="Code build",
+        #     # source=source_output,
+        #     build_spec=codebuild.BuildSpec.from_source_filename(filename="cdk_apigw_lambda_pipeline//pipeline/build-buildspec.yml"),
+        #     environment=codebuild.BuildEnvironment(
+        #         build_image=codebuild.LinuxBuildImage.STANDARD_5_0,
+        #         privileged=True
+        #     )
+        # )
+
 
         cdk_code_codebuildaction = codepipeline_actions.CodeBuildAction(
             action_name="CodeBuild",
