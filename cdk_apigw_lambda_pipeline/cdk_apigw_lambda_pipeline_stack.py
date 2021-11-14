@@ -86,7 +86,6 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             "Build code",
             project_name="BuildCode_Project",
             description="Code build",
-            # source=source_output,
             build_spec=codebuild.BuildSpec.from_source_filename(filename="cdk_apigw_lambda_pipeline//pipeline/buildspec_BuildCode_Project.yml"),
             environment=codebuild.BuildEnvironment(
                 build_image=codebuild.LinuxBuildImage.STANDARD_5_0,
@@ -96,12 +95,42 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
 
         build_stage.add_to_role_policy(
             statement=iam.PolicyStatement(
-                sid="Cloudformation Permissions",
+                sid="CloudformationPermissions",
                 effect=iam.Effect.ALLOW,
-                actions=["cloudformation:DescribeStacks"],
-                resources=["arn:aws:cloudformation:us-east-1:059362432186:stack/CdkApigwLambdaStack/*"]
+                actions=[
+                    "cloudformation:DescribeStacks",
+                    "cloudformation:GetTemplate",
+                    "cloudformation:DeleteChangeSet"
+                ],
+                resources=[
+                    "arn:aws:cloudformation:us-east-1:059362432186:stack/CdkApigwLambdaStack/*"
+                ]
             )
         )
+
+        build_stage.add_to_role_policy(
+            statement=iam.PolicyStatement(
+                sid="CDKStackPermissions",
+                effect=iam.Effect.ALLOW,
+                actions=[
+                    "cloudformation:DescribeStacks"
+                    # "cloudformation:GetTemplate"
+                ],
+                resources=[
+                    "arn:aws:cloudformation:us-east-1:059362432186:stack/CdkApigwLambdaStack/*",
+                    "arn:aws:cloudformation:us-east-1:059362432186:stack/CDKToolkit/*"
+                ]
+            )
+        )
+
+        # build_stage.add_to_role_policy(
+        #     statement=iam.PolicyStatement(
+        #         sid="AllowCDKBucketAccess",
+        #         effect=iam.Effect.ALLOW,
+        #         actions=["s3:*"],
+        #         resources=["arn:aws:s3:::cdktoolkit-stagingbucket-*"]
+        #     )
+        # )
 
 
         cdk_code_codebuildaction = codepipeline_actions.CodeBuildAction(
