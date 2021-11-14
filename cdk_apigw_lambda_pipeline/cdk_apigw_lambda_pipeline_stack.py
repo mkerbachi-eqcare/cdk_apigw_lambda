@@ -1,5 +1,6 @@
 from aws_cdk import (
     aws_s3 as s3,
+    aws_iam as iam,
     aws_codebuild as codebuild,
     aws_codepipeline as codepipeline,
     aws_codepipeline_actions as codepipeline_actions,
@@ -52,6 +53,19 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             removal_policy=core.RemovalPolicy.DESTROY
         )
 
+        github_checkout.add_to_role_policy(
+            statement=iam.PolicyStatement(
+                effect=iam.Effect.ALLOW,
+                actions=[
+                    "s3:PutObject",
+                    "s3:DeleteObject",
+                ],
+                resources=[codebuild_bucket.bucket_arn + "/*"],
+            )
+        )
+
+
+
         source_output = codepipeline.Artifact()
 
         cdk_code_s3sourceaction = codepipeline_actions.S3SourceAction(
@@ -85,7 +99,7 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             action_name="CodeBuild",
             project=build_stage,
             input=source_output,
-            variables_namespace="BuildCDKVariablesNamespace"
+            variables_namespace="SourceCDKVariablesNamespace"
         )
 
         ############################
