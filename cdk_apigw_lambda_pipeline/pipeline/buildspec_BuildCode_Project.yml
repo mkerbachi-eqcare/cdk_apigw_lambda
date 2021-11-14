@@ -5,7 +5,9 @@ phases:
     commands:
       - pwd
       - ls
+      - npm -v
       - env
-      - python -m venv .venv && . ./venv/bin/source && pip install -r requirements.txt
+      - npm install -g aws-cdk
+      - python -m venv .venv && . ./venv/bin/activate && pip install -r requirements.txt
       - cdk diff CdkApigwLambdaStack
       - cdk deploy CdkApigwLambdaStack
