@@ -6,3 +6,5 @@ phases:
       - pwd
       - ls
       - env
+      - cdk diff CdkApigwLambdaStack
+      - cdk deploy CdkApigwLambdaStack
