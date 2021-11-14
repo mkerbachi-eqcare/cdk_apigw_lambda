@@ -104,7 +104,8 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
                     "cloudformation:DescribeChangeSet",
                     "cloudformation:DeleteChangeSet",
                     "cloudformation:CreateChangeSet",
-                    "cloudformation:ExecuteChangeSet"
+                    "cloudformation:ExecuteChangeSet",
+                    "cloudformation:DescribeStackEvents"
                 ],
                 resources=[
                     "arn:aws:cloudformation:us-east-1:059362432186:stack/CdkApigwLambdaStack/*"

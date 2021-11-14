@@ -28,8 +28,8 @@ class CdkApigwLambdaStack(cdk.Stack):
 
         
         #Verison lambda with $CODEBUILD_BUILD_NUMBER
-        # print("os.env={}".format(os.environ))
         print(os.environ)
+        codebuild_id = os.environ.get('CODEBUILD_BUILD_NUMBER', '0')
 
         function1 = aws_lambda.Function(
             self,
@@ -40,6 +40,7 @@ class CdkApigwLambdaStack(cdk.Stack):
             timeout=core.Duration.seconds(20),
             runtime=aws_lambda.Runtime.PYTHON_3_9)
 
+        function1.add_version(name=codebuild_id)
 
         apigw_test1 = apigw.root.add_resource("test1").add_method(
             http_method="GET",
