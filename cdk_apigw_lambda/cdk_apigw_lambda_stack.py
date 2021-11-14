@@ -10,7 +10,7 @@ from aws_cdk import(
 # being updated to use `cdk`.  You may delete this import if you don't need it.
 from aws_cdk import core
 
-
+import os
 
 class CdkApigwLambdaStack(cdk.Stack):
 
@@ -28,7 +28,9 @@ class CdkApigwLambdaStack(cdk.Stack):
 
         
         #Verison lambda with $CODEBUILD_BUILD_NUMBER
-
+        # print("os.env={}".format(os.environ))
+        print("os.env={}" + os.environ)
+        
         function1 = aws_lambda.Function(
             self,
             "function1",
