@@ -102,7 +102,8 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
                     "cloudformation:GetTemplate",
                     "cloudformation:DescribeChangeSet",
                     "cloudformation:DeleteChangeSet",
-                    "cloudformation:CreateChangeSet"
+                    "cloudformation:CreateChangeSet",
+                    "cloudformation:ExecuteChangeSet"
                 ],
                 resources=[
                     "arn:aws:cloudformation:us-east-1:059362432186:stack/CdkApigwLambdaStack/*"
@@ -116,7 +117,6 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
                 effect=iam.Effect.ALLOW,
                 actions=[
                     "cloudformation:DescribeStacks"
-                    # "cloudformation:GetTemplate"
                 ],
                 resources=[
                     "arn:aws:cloudformation:us-east-1:059362432186:stack/CDKToolkit/*"
