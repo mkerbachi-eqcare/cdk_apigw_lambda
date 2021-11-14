@@ -26,6 +26,9 @@ class CdkApigwLambdaStack(cdk.Stack):
         with open("lambdas/python/function1.py", encoding="utf8") as fp:
             handler_code = fp.read()
 
+        
+        #Verison lambda with $CODEBUILD_BUILD_NUMBER
+
         function1 = aws_lambda.Function(
             self,
             "function1",
