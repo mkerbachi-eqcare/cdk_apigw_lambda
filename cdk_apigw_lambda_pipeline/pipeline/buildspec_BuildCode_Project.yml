@@ -8,6 +8,6 @@ phases:
       - npm -v
       - env
       - npm install -g aws-cdk
-      - python -m venv .venv && . ./venv/bin/activate && pip install -r requirements.txt
+      - python -m venv .venv && ls -ltr .venv/ && source ./venv/bin/activate && pip install -r requirements.txt
       - cdk diff CdkApigwLambdaStack
       - cdk deploy CdkApigwLambdaStack
