@@ -95,11 +95,12 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
 
         build_stage.add_to_role_policy(
             statement=iam.PolicyStatement(
-                sid="CloudformationPermissions",
+                sid="ApplicationStackPermissions",
                 effect=iam.Effect.ALLOW,
                 actions=[
                     "cloudformation:DescribeStacks",
                     "cloudformation:GetTemplate",
+                    "cloudformation:DescribeChangeSet",
                     "cloudformation:DeleteChangeSet",
                     "cloudformation:CreateChangeSet"
                 ],
@@ -118,7 +119,6 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
                     # "cloudformation:GetTemplate"
                 ],
                 resources=[
-                    "arn:aws:cloudformation:us-east-1:059362432186:stack/CdkApigwLambdaStack/*",
                     "arn:aws:cloudformation:us-east-1:059362432186:stack/CDKToolkit/*"
                 ]
             )
