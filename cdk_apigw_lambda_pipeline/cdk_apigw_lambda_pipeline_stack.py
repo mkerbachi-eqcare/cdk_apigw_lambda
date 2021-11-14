@@ -94,6 +94,15 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             )
         )
 
+        build_stage.add_to_role_policy(
+            statement=iam.PolicyStatement(
+                sid="Cloudformation Permissions",
+                effect=iam.Effect.ALLOW,
+                actions=["cloudformation:DescribeStacks"],
+                resources=["arn:aws:cloudformation:us-east-1:059362432186:stack/CdkApigwLambdaStack/*"]
+            )
+        )
+
 
         cdk_code_codebuildaction = codepipeline_actions.CodeBuildAction(
             action_name="CodeBuild",
