@@ -1,6 +1,5 @@
 import json
 
-
 body={}
 
 def handler(event, context):
