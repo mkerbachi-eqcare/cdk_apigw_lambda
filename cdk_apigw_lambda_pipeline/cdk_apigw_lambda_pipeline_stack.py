@@ -25,7 +25,7 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
         github_checkout = codebuild.Project(
             self,
             "Checkout code",
-            project_name="CheckoutCode",
+            project_name="CheckoutCode_Projet",
             description="Checkout code from Github",
             source=codebuild.Source.git_hub(
                 owner="mkerbachi-eqcare",
@@ -84,7 +84,7 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
         build_stage = codebuild.PipelineProject(
             self,
             "Build code",
-            project_name="BuildCode",
+            project_name="BuildCode_Project",
             description="Code build",
             # source=source_output,
             build_spec=codebuild.BuildSpec.from_source_filename(filename="cdk_apigw_lambda_pipeline//pipeline/build-buildspec.yml"),
@@ -122,11 +122,11 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             artifact_bucket=codebuild_bucket,
             pipeline_name="ApiGwLambda_Pipeline",
             stages=[codepipeline.StageProps(
-                stage_name="CheckoutCode",
+                stage_name="CheckoutCode_Stage",
                 actions=[cdk_code_s3sourceaction]
             ),
             codepipeline.StageProps(
-                stage_name="BuildCode",
+                stage_name="BuildCode_Stage",
                 actions=[cdk_code_codebuildaction]
             )]
         )
