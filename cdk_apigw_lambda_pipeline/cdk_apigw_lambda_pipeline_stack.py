@@ -99,7 +99,7 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             action_name="CodeBuild",
             project=build_stage,
             input=source_output,
-            variables_namespace="SourceCDKVariablesNamespace"
+            variables_namespace="BuildCDKVariablesNamespace"
         )
 
         ############################
