@@ -7,4 +7,5 @@ phases:
       - ls -ltra #; ls cdk_apigw_lambda
       - zip cdk_code.zip ./*
       - ls -ltra
+      - aws s3 cp cdk_code.zip s3://cdk-codebuild-bucket/
       - env
