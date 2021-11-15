@@ -152,7 +152,7 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
                     "iam:GetRole"
                 ],
                 resources=[
-                    "*"
+                    "*"  #????? who is using this ?
                 ]
             )
         )
