@@ -156,6 +156,21 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             )
         )
 
+        build_stage.add_to_role_policy(
+            statement=iam.PolicyStatement(
+                sid="CreateIamRole",
+                effect=iam.Effect.ALLOW,
+                actions=[
+                    "iam:CreateRole"
+                ],
+                resources=[
+                    "arn:aws:iam::059362432186:role/" + self.stack_name + "-*"
+                ]
+            )
+        )
+
+
+
         cdk_code_codebuildaction = codepipeline_actions.CodeBuildAction(
             action_name="CodeBuild",
             project=build_stage,
