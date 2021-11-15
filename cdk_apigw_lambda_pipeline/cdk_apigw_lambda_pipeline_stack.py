@@ -161,10 +161,11 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
                 sid="CreateIamRole",
                 effect=iam.Effect.ALLOW,
                 actions=[
-                    "iam:CreateRole"
+                    "iam:CreateRole",
+                    "iam:AttachRolePolicy"
                 ],
                 resources=[
-                    "arn:aws:iam::059362432186:role/" + self.stack_name + "-*"
+                    "arn:aws:iam::059362432186:role/CdkApigwLambdaStack-*"
                 ]
             )
         )
