@@ -43,18 +43,18 @@ class CdkApigwLambdaStack(cdk.Stack):
 
         function1.add_version(name=codebuild_id)
 
-        function1.add_to_role_policy(
-            statement=iam.PolicyStatement(
-                sid="LambdaIamGetRoles",
-                effect=iam.Effect.ALLOW,
-                actions=[
-                    "iam:GetRole"
-                ],
-                resources=[
-                    "*"  #To be precised not star
-                ]
-            )
-        )
+        # function1.add_to_role_policy(
+        #     statement=iam.PolicyStatement(
+        #         sid="LambdaIamGetRoles",
+        #         effect=iam.Effect.ALLOW,
+        #         actions=[
+        #             "iam:GetRole"
+        #         ],
+        #         resources=[
+        #             "*"  #To be precised not star
+        #         ]
+        #     )
+        # )
 
         apigw_test1 = apigw.root.add_resource("test1").add_method(
             http_method="GET",
