@@ -120,7 +120,8 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
                 actions=[
                     "lambda:ListVersionsByFunction",
                     "lambda:PublishVersion",
-                    "lambda:DeleteFunction"
+                    "lambda:DeleteFunction",
+                    "lambda:UpdateFunctionCode"
                 ],
                 resources=[
                     "arn:aws:lambda:us-east-1:059362432186:function:function1"
