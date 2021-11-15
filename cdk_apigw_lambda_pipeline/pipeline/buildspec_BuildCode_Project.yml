@@ -10,4 +10,4 @@ phases:
       - npm install -g aws-cdk
       - python -m venv .venv && ls -ltr .venv/bin && . .venv/bin/activate && pip install -r requirements.txt
       - cdk diff CdkApigwLambdaStack
-      - cdk deploy CdkApigwLambdaStack
+      - cdk deploy CdkApigwLambdaStack --require-approval never
