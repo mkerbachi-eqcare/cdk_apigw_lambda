@@ -141,6 +141,20 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             )
         )
 
+        build_stage.add_to_role_policy(
+            statement=iam.PolicyStatement(
+                sid="GetIamRole",
+                effect=iam.Effect.ALLOW,
+                actions=[
+                    "iam:GetRole"
+                ],
+                resources=[
+                    "*"
+                ]
+            )
+        )
+
+
         # build_stage.add_to_role_policy(
         #     statement=iam.PolicyStatement(
         #         sid="AllowCDKBucketAccess",
