@@ -122,11 +122,12 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
                     "lambda:PublishVersion",
                     "lambda:DeleteFunction",
                     "lambda:UpdateFunctionCode",
-                    "lambda:UpdateFunctionConfiguration"
+                    "lambda:UpdateFunctionConfiguration",
+                    "iam:DetachRolePolicy"
                 ],
                 resources=[
-                    "arn:aws:lambda:us-east-1:059362432186:function:function1",
-                    "arn:aws:lambda:us-east-1:059362432186:function:function1:*"
+                    "arn:aws:lambda:us-east-1:059362432186:function:function*",
+                    "arn:aws:lambda:us-east-1:059362432186:function:function*:*"
                 ]
             )
         )
