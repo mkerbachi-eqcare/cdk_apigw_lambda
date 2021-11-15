@@ -1,7 +1,8 @@
 from aws_cdk import(
     core as cdk,
     aws_apigateway,
-    aws_lambda
+    aws_lambda,
+    aws_iam as iam
 )
 
 # For consistency with other languages, `cdk` is the preferred import name for
@@ -41,6 +42,19 @@ class CdkApigwLambdaStack(cdk.Stack):
             runtime=aws_lambda.Runtime.PYTHON_3_9)
 
         function1.add_version(name=codebuild_id)
+
+        function1.add_to_role_policy(
+            statement=iam.PolicyStatement(
+                sid="LambdaIamGetRoles",
+                effect=iam.Effect.ALLOW,
+                actions=[
+                    "iam:GetRole"
+                ],
+                resources=[
+                    "*"  #To be precised not star
+                ]
+            )
+        )
 
         apigw_test1 = apigw.root.add_resource("test1").add_method(
             http_method="GET",
