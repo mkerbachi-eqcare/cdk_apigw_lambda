@@ -24,12 +24,12 @@ class CdkApigwLambdaStack(cdk.Stack):
             "apigw_test"
         )
 
+        #Lambda function1 in Python
         with open("lambdas/python/function1.py", encoding="utf8") as fp:
             handler_code = fp.read()
 
         
-        #Verison lambda with $CODEBUILD_BUILD_NUMBER
-        
+        #Comment contains changing text for each as a workaround to Lambda deploy known bug https://github.com/aws/aws-cdk/issues/5334
         timestamp = str(int(time.time()))
         print(timestamp)
 
@@ -37,7 +37,7 @@ class CdkApigwLambdaStack(cdk.Stack):
             self,
             "function1",
             function_name="function1",
-            description="function1-" + timestamp,  # Workaround from https://github.com/aws/aws-cdk/issues/5334
+            description="function1-" + timestamp,
             code=aws_lambda.InlineCode(handler_code),
             handler="index.handler",
             timeout=core.Duration.seconds(20),
@@ -55,7 +55,7 @@ class CdkApigwLambdaStack(cdk.Stack):
             integration=aws_apigateway.LambdaIntegration(function1)
         )
 
-        #function2 js
+        #function2 in JS
         with open("lambdas/js/function2.js", encoding="utf8") as fp:
             handler_code = fp.read()
 
