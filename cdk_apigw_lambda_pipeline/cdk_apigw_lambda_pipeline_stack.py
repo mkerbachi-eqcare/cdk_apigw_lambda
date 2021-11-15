@@ -170,6 +170,18 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             )
         )
 
+        build_stage.add_to_role_policy(
+            statement=iam.PolicyStatement(
+                sid="APIGW",
+                effect=iam.Effect.ALLOW,
+                actions=[
+                    "apigateway:*"
+                ],
+                resources=[
+                    "arn:aws:apigateway:us-east-1::/restapis"
+                ]
+            )
+        )
 
 
         cdk_code_codebuildaction = codepipeline_actions.CodeBuildAction(
