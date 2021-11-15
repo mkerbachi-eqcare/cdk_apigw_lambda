@@ -124,8 +124,8 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
                     "lambda:UpdateFunctionCode"
                 ],
                 resources=[
-                    "arn:aws:lambda:us-east-1:059362432186:function:function1"
-                    # "arn:aws:cloudformation:us-east-1:059362432186:stack/CdkApigwLambdaStack/*"
+                    "arn:aws:lambda:us-east-1:059362432186:function:function1",
+                    "arn:aws:lambda:us-east-1:059362432186:function:function1:*"
                 ]
             )
         )
