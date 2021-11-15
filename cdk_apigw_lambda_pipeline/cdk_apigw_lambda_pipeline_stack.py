@@ -155,17 +155,6 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             )
         )
 
-
-        # build_stage.add_to_role_policy(
-        #     statement=iam.PolicyStatement(
-        #         sid="AllowCDKBucketAccess",
-        #         effect=iam.Effect.ALLOW,
-        #         actions=["s3:*"],
-        #         resources=["arn:aws:s3:::cdktoolkit-stagingbucket-*"]
-        #     )
-        # )
-
-
         cdk_code_codebuildaction = codepipeline_actions.CodeBuildAction(
             action_name="CodeBuild",
             project=build_stage,

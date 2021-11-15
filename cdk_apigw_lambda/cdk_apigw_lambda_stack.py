@@ -10,8 +10,8 @@ from aws_cdk import(
 # with examples from the CDK Developer's Guide, which are in the process of
 # being updated to use `cdk`.  You may delete this import if you don't need it.
 from aws_cdk import core
-
 import os
+import time
 
 class CdkApigwLambdaStack(cdk.Stack):
 
@@ -29,32 +29,21 @@ class CdkApigwLambdaStack(cdk.Stack):
 
         
         #Verison lambda with $CODEBUILD_BUILD_NUMBER
-        print(os.environ)
-        codebuild_id = os.environ.get('CODEBUILD_BUILD_NUMBER', '0')
+        
+        timestamp = str(int(time.time()))
+        print(timestamp)
 
         function1 = aws_lambda.Function(
             self,
             "function1",
             function_name="function1",
+            description="function1-" + timestamp,  # Workaround from https://github.com/aws/aws-cdk/issues/5334
             code=aws_lambda.InlineCode(handler_code),
             handler="index.handler",
             timeout=core.Duration.seconds(20),
             runtime=aws_lambda.Runtime.PYTHON_3_9)
 
-        function1.add_version(name=codebuild_id)
-
-        # function1.add_to_role_policy(
-        #     statement=iam.PolicyStatement(
-        #         sid="LambdaIamGetRoles",
-        #         effect=iam.Effect.ALLOW,
-        #         actions=[
-        #             "iam:GetRole"
-        #         ],
-        #         resources=[
-        #             "*"  #To be precised not star
-        #         ]
-        #     )
-        # )
+        function1.add_version(name=timestamp)
 
         apigw_test1 = apigw.root.add_resource("test1").add_method(
             http_method="GET",
