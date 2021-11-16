@@ -27,5 +27,6 @@ phases:
         \"source_commitid\": env.CODEBUILD_RESOLVED_SOURCE_VERSION, \
         \"report\": . }" ./report/cfn_nag.out.json > payload.json
       - ls -ltr
+      - cat payload.json
       - cdk diff CdkApigwLambdaStack
       - cdk deploy CdkApigwLambdaStack --require-approval never
