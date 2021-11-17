@@ -186,6 +186,20 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
         )
 
 
+        #To allow Lambda invocation -Updating SecurityHub-
+        build_stage.add_to_role_policy(
+            statement=iam.PolicyStatement(
+                sid="LambdaSecurityHUB",
+                effect=iam.Effect.ALLOW,
+                actions=[
+                    "lambda:InvokeFunction"
+                ],
+                resources=[
+                    "arn:aws:lambda:us-east-1:059362432186:function:ImportToSecurityHub"
+                ]
+            )
+        )
+
         cdk_code_codebuildaction = codepipeline_actions.CodeBuildAction(
             action_name="CodeBuild",
             project=build_stage,
