@@ -1,3 +1,11 @@
+#TODO
+
+* Deploy Cognito Setup
+* Authenticate API call to APIGW with Cognito
+* Add XRAY TO APIGW/Lambda
+* Deploy DynamoDB with CDK + Lamdbda interaction
+* Add CodeDeploy for Lambda
+
 
 # Welcome to your CDK Python project!
 
