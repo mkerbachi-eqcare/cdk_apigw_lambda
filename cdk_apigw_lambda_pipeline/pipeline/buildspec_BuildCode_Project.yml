@@ -27,7 +27,7 @@ phases:
         \"source_commitid\": env.CODEBUILD_RESOLVED_SOURCE_VERSION, \
         \"report\": . }" ./report/cfn_nag.out.json > payload.json
       - aws lambda invoke --function-name ImportToSecurityHub --payload file://payload.json ./report/junit_scan_report.xml && echo "LAMBDA_SUCCEDED" || echo "LAMBDA_FAILED"
-      - if [[ "$FAIL_BUILD" = "true" && "$SCAN_RESULT" = "FAILED" ]]; then printf "\n\nFailiing pipeline as possible insecure configurations were detected\n\n" && exit 1; fi
+      - if [ "$FAIL_BUILD" = "true" && "$SCAN_RESULT" = "FAILED" ]; then printf "\n\nFailiing pipeline as possible insecure configurations were detected\n\n" && exit 1; fi
       - ls -ltr
       - cat payload.json
       - cdk diff CdkApigwLambdaStack
