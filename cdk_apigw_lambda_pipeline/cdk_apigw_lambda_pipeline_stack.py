@@ -195,7 +195,7 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
                     "lambda:InvokeFunction"
                 ],
                 resources=[
-                    "arn:aws:lambda:us-east-1:059362432186:function:ImportToSecurityHub "
+                    "arn:aws:lambda:us-east-1:059362432186:function:ImportToSecurityHub"
                 ]
             )
         )
