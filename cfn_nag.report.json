@@ -1,0 +1,250 @@
+[
+  {
+    "filename": "cdk.out/CdkApigwLambdaPipelineeStack.template.json",
+    "file_results": {
+      "failure_count": 1,
+      "violations": [
+        {
+          "id": "F4",
+          "name": "IamPolicyWildcardActionRule",
+          "type": "FAIL",
+          "message": "IAM policy should not allow * action",
+          "logical_resource_ids": [
+            "BuildcodeRoleDefaultPolicy84CCE104"
+          ],
+          "line_numbers": [
+            338
+          ],
+          "element_types": [
+            "resource"
+          ]
+        },
+        {
+          "id": "W12",
+          "name": "IamPolicyWildcardResourceRule",
+          "type": "WARN",
+          "message": "IAM policy should not allow * resource",
+          "logical_resource_ids": [
+            "BuildcodeRoleDefaultPolicy84CCE104"
+          ],
+          "line_numbers": [
+            338
+          ],
+          "element_types": [
+            "resource"
+          ]
+        },
+        {
+          "id": "W51",
+          "name": "MissingBucketPolicyRule",
+          "type": "WARN",
+          "message": "S3 bucket should likely have a bucket policy",
+          "logical_resource_ids": [
+            "cdkcodebuildbucketC6BED85E",
+            "cdkcodepipelinebucketFABDBB71"
+          ],
+          "line_numbers": [
+            203,
+            573
+          ],
+          "element_types": [
+            "resource",
+            "resource"
+          ]
+        },
+        {
+          "id": "W35",
+          "name": "S3BucketAccessLoggingRule",
+          "type": "WARN",
+          "message": "S3 Bucket should have access logging configured",
+          "logical_resource_ids": [
+            "cdkcodebuildbucketC6BED85E",
+            "cdkcodepipelinebucketFABDBB71"
+          ],
+          "line_numbers": [
+            203,
+            573
+          ],
+          "element_types": [
+            "resource",
+            "resource"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "filename": "cdk.out/CdkApigwLambdaStack.template.json",
+    "file_results": {
+      "failure_count": 0,
+      "violations": [
+        {
+          "id": "W68",
+          "name": "ApiGatewayDeploymentUsagePlanRule",
+          "type": "WARN",
+          "message": "AWS::ApiGateway::Deployment resources should be associated with an AWS::ApiGateway::UsagePlan. ",
+          "logical_resource_ids": [
+            "apigwtestDeployment6758E2A1e5907b351d1e96f2855e4596f6340f91"
+          ],
+          "line_numbers": [
+            64
+          ],
+          "element_types": [
+            "resource"
+          ]
+        },
+        {
+          "id": "W59",
+          "name": "ApiGatewayMethodAuthorizationTypeRule",
+          "type": "WARN",
+          "message": "AWS::ApiGateway::Method should not have AuthorizationType set to 'NONE' unless it is of HttpMethod: OPTIONS.",
+          "logical_resource_ids": [
+            "apigwtesttest1GETA6465963",
+            "apigwtesttest1test2GETC29E79EA",
+            "apigwtesttestjsGET8E72B91D"
+          ],
+          "line_numbers": [
+            185,
+            307,
+            432
+          ],
+          "element_types": [
+            "resource",
+            "resource",
+            "resource"
+          ]
+        },
+        {
+          "id": "W69",
+          "name": "ApiGatewayStageAccessLoggingRule",
+          "type": "WARN",
+          "message": "AWS::ApiGateway::Stage should have the AccessLogSetting property defined.",
+          "logical_resource_ids": [
+            "apigwtestDeploymentStageprod4F9DB576"
+          ],
+          "line_numbers": [
+            84
+          ],
+          "element_types": [
+            "resource"
+          ]
+        },
+        {
+          "id": "W64",
+          "name": "ApiGatewayStageUsagePlanRule",
+          "type": "WARN",
+          "message": "AWS::ApiGateway::Stage resources should be associated with an AWS::ApiGateway::UsagePlan. ",
+          "logical_resource_ids": [
+            "apigwtestDeploymentStageprod4F9DB576"
+          ],
+          "line_numbers": [
+            84
+          ],
+          "element_types": [
+            "resource"
+          ]
+        },
+        {
+          "id": "W58",
+          "name": "LambdaFunctionCloudWatchLogsRule",
+          "type": "WARN",
+          "message": "Lambda functions require permission to write CloudWatch Logs",
+          "logical_resource_ids": [
+            "function17494F096",
+            "function2A9E9885F"
+          ],
+          "line_numbers": [
+            505,
+            575
+          ],
+          "element_types": [
+            "resource",
+            "resource"
+          ]
+        },
+        {
+          "id": "W89",
+          "name": "LambdaFunctionInsideVPCRule",
+          "type": "WARN",
+          "message": "Lambda functions should be deployed inside a VPC",
+          "logical_resource_ids": [
+            "function17494F096",
+            "function2A9E9885F"
+          ],
+          "line_numbers": [
+            505,
+            575
+          ],
+          "element_types": [
+            "resource",
+            "resource"
+          ]
+        },
+        {
+          "id": "W92",
+          "name": "LambdaFunctionReservedConcurrentExecutionsRule",
+          "type": "WARN",
+          "message": "Lambda functions should define ReservedConcurrentExecutions to reserve simultaneous executions",
+          "logical_resource_ids": [
+            "function17494F096",
+            "function2A9E9885F"
+          ],
+          "line_numbers": [
+            505,
+            575
+          ],
+          "element_types": [
+            "resource",
+            "resource"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "filename": "cdk.out/manifest.json",
+    "file_results": {
+      "failure_count": 1,
+      "violations": [
+        {
+          "id": "FATAL",
+          "name": "system",
+          "type": "FAIL",
+          "message": "Illegal cfn - no Resources",
+          "logical_resource_ids": [
+
+          ],
+          "line_numbers": [
+
+          ],
+          "element_types": [
+
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "filename": "cdk.out/tree.json",
+    "file_results": {
+      "failure_count": 1,
+      "violations": [
+        {
+          "id": "FATAL",
+          "name": "system",
+          "type": "FAIL",
+          "message": "Illegal cfn - no Resources",
+          "logical_resource_ids": [
+
+          ],
+          "line_numbers": [
+
+          ],
+          "element_types": [
+
+          ]
+        }
+      ]
+    }
+  }
+]

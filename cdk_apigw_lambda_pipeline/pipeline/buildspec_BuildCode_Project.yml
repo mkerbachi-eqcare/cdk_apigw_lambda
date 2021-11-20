@@ -29,6 +29,7 @@ phases:
       - aws lambda invoke --function-name ImportToSecurityHub --payload file://payload.json ./report/junit_scan_report.xml && echo "LAMBDA_SUCCEDED" || echo "LAMBDA_FAILED"
       - if [[ "$FAIL_BUILD" = "true" && "$SCAN_RESULT" = "FAILED" ]]; then printf "\n\nFailiing pipeline as possible insecure configurations were detected\n\n" && exit 1; fi
       - ls -ltr
+      - ls -ltr report/
       - #cat payload.json
       - cdk diff CdkApigwLambdaStack
       - cdk deploy CdkApigwLambdaStack --require-approval never

@@ -1,4 +1,7 @@
-#TODO
+# CFN NAG
+$ /c/Ruby30-x64/bin/cfn_nag_scan -o json --input-path cdk.out/AwsCdkFullstackappPipeline.template.json  > cfn_nag.report.json
+
+# TODO
 
 * Deploy Cognito Setup
 * Authenticate API call to APIGW with Cognito

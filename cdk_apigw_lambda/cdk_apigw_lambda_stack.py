@@ -37,13 +37,14 @@ class CdkApigwLambdaStack(cdk.Stack):
             self,
             "function1",
             function_name="function1",
-            description="function1-" + timestamp,
+            description="function1-", #+ timestamp,
             code=aws_lambda.InlineCode(handler_code),
             handler="index.handler",
             timeout=core.Duration.seconds(20),
             runtime=aws_lambda.Runtime.PYTHON_3_9)
 
-        function1.add_version(name=timestamp)
+        #Uncomment this to deploy lambda without version
+        # function1.add_version(name=timestamp)
 
         apigw_test1 = apigw.root.add_resource("test1").add_method(
             http_method="GET",
