@@ -35,9 +35,9 @@ phases:
       - #cat payload.json
       - cdk diff CdkApigwLambdaStack
       - cdk deploy CdkApigwLambdaStack --require-approval never
-  reports:
-    SecurityReports:
-      files:
-        - report/junit_scan_report.xml
-      discard-paths: 'yes'
-      file-format: JunitXml
+reports:
+  SecurityReports:
+    files:
+      - report/junit_scan_report.xml
+    discard-paths: 'yes'
+    file-format: JunitXml
