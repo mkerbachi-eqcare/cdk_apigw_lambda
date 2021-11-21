@@ -94,6 +94,21 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             )
         )
 
+        #Pour envoyer le rapport cfn_nag vers S3
+        build_stage.add_to_role_policy(
+            statement=iam.PolicyStatement(
+                sid="S3Access",
+                effect=iam.Effect.ALLOW,
+                actions=[
+                    "s3:PutObject"
+                ],
+                resources=[
+                    "arn:aws:s3:::cdk-codebuild-bucket/*"
+                ]
+            )
+        )
+
+
         build_stage.add_to_role_policy(
             statement=iam.PolicyStatement(
                 sid="ApplicationStackPermissions",
