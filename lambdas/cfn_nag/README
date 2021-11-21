@@ -1,0 +1,28 @@
+
+Create zip file pip install -r requirements.txt --target ./packages
+
+pip install -r requirements.txt --target ./packages
+cd packages/
+zip -r ../ImportToSecurityHub-v2.zip .
+cd ..
+7z  a ImportToSecurityHub-v2.zip *.py
+
+
+
+aws --profile eqcare-dev lambda update-function-code --function-name ImportToSecurityHub-v2 --zip-file fileb://ImportToSecurityHub-v2.zip
+
+
+Ajouter Envvariables+change lambda handler in the comnsole
+
+
+
+# Invoke lambda
+
+```
+mohamed@MSI MINGW64 /c/Data/code/python/cdk_apigw_lambda/tmp (master)
+$ aws --profile eqcare-dev lambda invoke --function-name ImportToSecurityHub-v2 --payload fileb://payload.json ./junit_scan_report.xml
+{
+    "StatusCode": 200,
+    "ExecutedVersion": "$LATEST"
+}
+```

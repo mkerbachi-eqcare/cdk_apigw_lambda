@@ -28,10 +28,16 @@ phases:
         \"report\": . }" ./report/cfn_nag.out.json > payload.json
       - aws s3 cp payload.json s3://cdk-codebuild-bucket/
       - aws s3 cp report/cfn_nag.out.json s3://cdk-codebuild-bucket/
-      - aws lambda invoke --function-name ImportToSecurityHub --payload file://payload.json ./report/junit_scan_report.xml && echo "LAMBDA_SUCCEDED" || echo "LAMBDA_FAILED"
+      - aws lambda invoke --function-name ImportToSecurityHub-v2 --payload file://payload.json ./report/junit_scan_report.xml && echo "LAMBDA_SUCCEDED" || echo "LAMBDA_FAILED"
       - if [[ "$FAIL_BUILD" = "true" && "$SCAN_RESULT" = "FAILED" ]]; then printf "\n\nFailiing pipeline as possible insecure configurations were detected\n\n" && exit 1; fi
       - ls -ltr
       - ls -ltr report/
       - #cat payload.json
       - cdk diff CdkApigwLambdaStack
       - cdk deploy CdkApigwLambdaStack --require-approval never
+  reports:
+    SecurityReports:
+      files:
+        - report/junit_scan_report.xml
+      discard-paths: 'yes'
+      file-format: JunitXml

@@ -90,8 +90,9 @@ class CdkApigwLambdaPipelineeStack(cdk.Stack):
             build_spec=codebuild.BuildSpec.from_source_filename(filename="cdk_apigw_lambda_pipeline//pipeline/buildspec_BuildCode_Project.yml"),
             environment=codebuild.BuildEnvironment(
                 build_image=codebuild.LinuxBuildImage.STANDARD_5_0,
-                privileged=False
-            )
+                privileged=False,
+            ),
+            grant_report_group_permissions=True,
         )
 
         #Pour envoyer le rapport cfn_nag vers S3
