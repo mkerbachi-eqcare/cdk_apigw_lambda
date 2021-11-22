@@ -23,7 +23,7 @@ phases:
       - | 
         source_repository=${CODEBUILD_SRC_DIR##*/} jq  \
         "{ \"messageType\": \"CodeScanReport\", \"reportType\": \"CFN-NAG\", \
-        \"createdAt\": $DATE, \"source_repository\": env.source_repository, \
+        \"createdAt\": "2021-11-22T00:57:44+00:00", \"source_repository\": env.source_repository, \
         \ "source_branch\": env.CODEBUILD_SOURCE_VERSION, \
         \"build_id\": env.CODEBUILD_BUILD_ID, \
         \"source_commitid\": env.CODEBUILD_RESOLVED_SOURCE_VERSION, \
