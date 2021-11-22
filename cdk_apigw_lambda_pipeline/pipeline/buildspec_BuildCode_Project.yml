@@ -16,7 +16,8 @@ phases:
       - python -m venv .venv && ls -ltr .venv/bin && . .venv/bin/activate && pip install -r requirements.txt
       - cdk synth --all
       - mkdir report
-      - export DATE=$(date --rfc-3339=seconds | sed 's/ /T/')
+      - #export DATE=$(date --rfc-3339=seconds | sed 's/ /T/')
+      - export DATE=$(date '+%FT%T.%N%:z')
       - echo $DATE
       - SCAN_RESULT=$(cfn_nag_scan --fail-on-warnings --input-path  cdk.out/ -o json > ./report/cfn_nag.out.json && echo OK || echo FAILED)
       - ls -ltr report
