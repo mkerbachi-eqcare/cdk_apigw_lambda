@@ -16,14 +16,14 @@ phases:
       - python -m venv .venv && ls -ltr .venv/bin && . .venv/bin/activate && pip install -r requirements.txt
       - cdk synth --all
       - mkdir report
-      - export DATE=$(date +"%Y-%m-%dT%T.%3N")
+      - export DATE=$(date --rfc-3339=seconds | sed 's/ /T/')
       - SCAN_RESULT=$(cfn_nag_scan --fail-on-warnings --input-path  cdk.out/ -o json > ./report/cfn_nag.out.json && echo OK || echo FAILED)
       - ls -ltr report
       - | 
         source_repository=${CODEBUILD_SRC_DIR##*/} jq  \
         "{ \"messageType\": \"CodeScanReport\", \"reportType\": \"CFN-NAG\", \
         \"createdAt\": \"$DATE\", \"source_repository\": env.source_repository, \
-        \"source_branch\": env.CODEBUILD_SOURCE_VERSION, \
+        \ "source_branch\": env.CODEBUILD_SOURCE_VERSION, \
         \"build_id\": env.CODEBUILD_BUILD_ID, \
         \"source_commitid\": env.CODEBUILD_RESOLVED_SOURCE_VERSION, \
         \"report\": . }" ./report/cfn_nag.out.json > payload.json
